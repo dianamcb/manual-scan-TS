@@ -1,4 +1,4 @@
-# Author: disa
+# Author: Diana Marlén Castañeda Bagatella
 # Description:This program find every energy of each cycle that gaussian made analyzing a molecule, then sort the energies and extract the lower point of energy (lower value) for all the files and generate a the energies.dat file. Next it takes the txt file to sor the energy from the low to high per file generating the minimal_energies.txt 
 # Instructions: python3 find_minimal_energy-py
 
@@ -30,8 +30,9 @@ for logFileName in logFilesList:
     if len(energies) == 0: 
         print(f'Warning: E(RB3LYP) not found in file {logFileName}')
         continue
-    energies.sort() 
-    minEnergies.append(energies[1])
+    energies.sort()
+    if len(energies) == 1: minEnergies.append(energies[0])
+    else: minEnergies.append(energies[1])
     fileNumbers.append(int(re.sub(r'.+?(\d+)\.log',r'\1',logFileName)))
 fileNumbers = np.array(fileNumbers)
 minEnergies = np.array(minEnergies) #Hartree
